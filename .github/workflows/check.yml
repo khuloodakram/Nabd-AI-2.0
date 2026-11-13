@@ -1,0 +1,23 @@
+name: Code checks
+on:
+  push:
+  pull_request:
+jobs:
+  syntax-and-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile application source
+        run: python -m py_compile app.py
+      - name: Check that model assets are not committed
+        run: |
+          test ! -f model/model.keras
+          test ! -f model/thresholds.json
+      - name: Validate research documentation
+        run: |
+          test -s README.md
+          test -s RESEARCH_REPORT.md
+          test -s requirements.txt
