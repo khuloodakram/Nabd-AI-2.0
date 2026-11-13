@@ -1,0 +1,11 @@
+model/*.keras
+model/*.h5
+*.keras
+*.h5
+*.zip
+*.npy
+*.npz
+.env
+.venv/
+__pycache__/
+.ipynb_checkpoints/
